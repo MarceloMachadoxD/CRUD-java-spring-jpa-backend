@@ -2,6 +2,7 @@ package dev.marcelomachado.crudspringjpapostgreesql.config;
 
 import dev.marcelomachado.crudspringjpapostgreesql.entities.Order;
 import dev.marcelomachado.crudspringjpapostgreesql.entities.User;
+import dev.marcelomachado.crudspringjpapostgreesql.entities.enums.OrderStatus;
 import dev.marcelomachado.crudspringjpapostgreesql.repositories.OrderRepository;
 import dev.marcelomachado.crudspringjpapostgreesql.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class TestConfig implements CommandLineRunner {
         User user2 = new User(null, "Beltrano", "Maria@em.com", "215553152", "Strong Password hahaha" + String.valueOf(Math.PI));
 
 
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), user);
-        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), user2);
-        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), user1);
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.DELIVERED, user);
+        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, user2);
+        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.SHIPPED, user1);
 
         userRepository.saveAll(Arrays.asList(user, user1, user2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
