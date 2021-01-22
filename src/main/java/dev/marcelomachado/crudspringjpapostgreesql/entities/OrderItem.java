@@ -1,5 +1,6 @@
 package dev.marcelomachado.crudspringjpapostgreesql.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.marcelomachado.crudspringjpapostgreesql.entities.PK.OrderItemPK;
 
 import javax.persistence.EmbeddedId;
@@ -13,7 +14,7 @@ import java.util.Objects;
 public class OrderItem implements Serializable {
 
     @EmbeddedId
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
 
     private Integer qty;
     private Double price;
@@ -29,6 +30,7 @@ public class OrderItem implements Serializable {
     }
 
 
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
