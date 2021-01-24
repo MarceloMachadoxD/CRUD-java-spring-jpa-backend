@@ -1,6 +1,7 @@
 package dev.marcelomachado.crudspringjpapostgreesql.services;
 
 import dev.marcelomachado.crudspringjpapostgreesql.entities.Category;
+import dev.marcelomachado.crudspringjpapostgreesql.entities.User;
 import dev.marcelomachado.crudspringjpapostgreesql.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,9 @@ public class CategoryService {
 
     }
 
+    public Category insert(Category obj){
+        return repository.save(obj);
+
+    }
 
 }
