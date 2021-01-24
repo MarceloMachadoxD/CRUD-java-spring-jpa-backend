@@ -2,6 +2,7 @@ package dev.marcelomachado.crudspringjpapostgreesql.services;
 
 import dev.marcelomachado.crudspringjpapostgreesql.entities.User;
 import dev.marcelomachado.crudspringjpapostgreesql.repositories.UserRepository;
+import dev.marcelomachado.crudspringjpapostgreesql.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class UserService {
 
     public User FindByID(Long id){
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 
 
     }
